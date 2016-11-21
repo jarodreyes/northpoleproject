@@ -1,0 +1,59 @@
+extends ../layout
+
+block styles
+  link(rel='stylesheet', media='screen'
+    href='//www.authy.com/form.authy.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css')
+
+block content
+  h1 Have one of Santa's helpers give you a call!
+  p.
+    Thank you for your interest in signing up! Can you tell us a bit about 
+    yourself?
+
+  form(action='/users', method='POST')
+    .form-group
+      label(for='fullName') Your Full Name:
+      input.form-control(type='text', name='fullName', 
+        placeholder='Peggy Carter')
+
+    .form-group
+      label(for='email') Your E-Mail Address:
+      input.form-control(type='email', name='email', 
+        placeholder='pcarter@ssr.gov')
+
+    .form-group
+      label(for='password') Your Password:
+      input.form-control(type='password', name='password')
+
+    .form-group
+      label(for='countryCode') Country Code:
+      select(id='authy-countries', name='countryCode')
+
+    .form-group
+      label(for='phone') Mobile Phone:
+      input.form-control(type='text', name='phone', placeholder='651-867-5309')
+
+    .form-group
+      label.col-sm-4.control-label(for='time') Have Santa Call At:
+      .col-sm-8
+        input#inputDate.form-control(type='text', name='time', placeholder='Pick a Date', required='')
+
+    .form-group
+      label.col-sm-4.control-label(for='selectTimeZone') Time Zone
+      .col-sm-8
+        select#selectTimeZone.form-control(name='timeZone', required='')
+          each zone in timeZones
+            option()
+            option(value="#{zone}") !{zone}
+
+    button.btn.btn-primary(type='submit') Create Account
+
+block scripts
+  // Include Authy form helpers and additional helper script
+  script(src='//www.authy.com/form.authy.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js')
+  script(src='/js/create_form.js')

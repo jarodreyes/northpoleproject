@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var config = require('../config');
 var moment = require('moment');
+var Emailer = require('../emailer');
 
 // Create authenticated Authy and Twilio API clients
 var authy = require('authy')(config.authyKey);
@@ -131,6 +132,11 @@ UserSchema.methods.sendMessage = function(message, cb) {
     });
 };
 
+// Send a text message via twilio to this user
+UserSchema.methods.sendRecording = function(url) {
+    Emailer.sendEmail(this, url);
+};
+
 // Check if User needs a phonecall
 UserSchema.methods.requiresCall = function (date) {
     var self = this;
@@ -145,7 +151,8 @@ UserSchema.methods.requiresCall = function (date) {
         console.log("Diff: "+diff);
         console.log("Timing: "+timing);
         console.log("This Notification:" +self.notification)
-        return timing === -117;
+        return timing === self.notification;
+        // return timing === -8;
     } catch(err) {
         console.log("ERROR! "+err);
     }
@@ -177,7 +184,7 @@ UserSchema.statics.makeCalls = function(callback) {
             var options = {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
-                url: 'http://jreyes.ngrok.io/ivr/join?userId=' + user.id,
+                url: 'http://jreyes.ngrok.io/ivr/welcome?userId=' + user.id,
                 record: true,
                 recordingStatusCallback: 'http://jreyes.ngrok.io/recordings?userId='+ user.id
             };
@@ -185,17 +192,7 @@ UserSchema.statics.makeCalls = function(callback) {
             // Send the message!
             twilioClient.calls.create(options)
             .then(function(call) {
-                twilioClient.calls.create({
-                    to: config.musicNumber,
-                    from: config.twilioNumber,
-                    url: 'http://jreyes.ngrok.io/ivr/join?userId=' + user.id,
-                });
-            }).then(function(call) {
-                twilioClient.calls.create({
-                    to: config.elfNumber,
-                    from: config.twilioNumber,
-                    url: 'http://jreyes.ngrok.io/ivr/join?userId=' + user.id,
-                });
+                console.log('call completed');
             }).fail(function(error) {
                 if(error) throw error;
             });

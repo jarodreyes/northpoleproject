@@ -1,12 +1,72 @@
 extends layout
 
 block content
-  h1 Account Verification with Node.js and Express
+  .o-container.o-container--medium
+    .hero
+      p.intro.first-highlight
+        b S 
+        |orting through a billion letters every winter has become unsustainable at the North Pole. This season, Twilio is helping Santa streamline his intake and provide quality 21st century customer support.
 
-  p.
-    This demo application will show you how to implement user account
-    verification with Twilio-powered <a href="http://www.authy.com">Authy</a>
-    in Node.js, using the Express web framework.
+      p.subtext To get started, we will need to ask you a few questions.
+      small We promise to never store your information or use it for anything other than the North Pole Project.
+      .u-center-block
+        a.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") I'm Game
+    .pole.u-center-block
+      #b1.beacon
+      #b2.beacon
+      #b3.beacon
+      img.u-center-block__content.u-center-block__content--horizontal(src="/img/candy-cane.svg", alt="The North Pole project logo")
+  .instructions
+    .o-container.o-container--medium
+      .o-grid__wrap
+        .o-grid__cell.o-grid__cell--width-50.o-grid__cell--offset-20
+          p.tease.first-highlight
+            b O
+            |h, so you are the type who wants to know more information before clicking a big red button?
+        h1 Here's How it works
+      .inst.o-grid
+        .o-grid__cell.o-grid__cell--width-20
+          h2.number 1
+        .o-grid__cell.o-grid__cell--width-80
+          h3 Information is submitted
+          img.diagram
+          p We ask you to enter your phone number, email address and a good time to recieve a call from “Santa’s helper”.
+          small We promise to never store your information or use it for anything other than the North Pole Project.
 
-  p
-    a(href='/users/new') Sign up for an account to see how it works!
+      .inst.o-grid
+        .o-grid__cell.o-grid__cell--width-20
+          h2.number 2
+        .o-grid__cell.o-grid__cell--width-80
+          h3 Your number is authenticated
+          img.diagram
+          p You will recieve a text message through Authy two-factor authentication to verify the number you entered so make sure to have your phone handy. 
+          small We don’t want you to prank call Mike Pence or do anything naughty like that.
+
+      .inst.o-grid
+        .o-grid__cell.o-grid__cell--width-20
+          h2.number 3
+        .o-grid__cell.o-grid__cell--width-80
+          h3 You receive a call
+          img.diagram
+          p A phone call is made by a Twilio app at the time you scheduled. You will want to make sure your child is around at this time.
+          img.diagram
+          p A script is read using Twilio text-to-voice asking your child what they want for Christmas.
+
+      .inst.o-grid
+        .o-grid__cell.o-grid__cell--width-20
+          h2.number 4
+        .o-grid__cell.o-grid__cell--width-80
+          h3 Santa receives the message
+          img.diagram
+          p A recording of the conversation is automatically sent to the email address you provided.
+          img.diagram
+          p After the phone call, an MMS of the North pole is sent to the phone number using Programmable SMS.
+
+      .o-grid__wrap
+        .o-grid__cell.o-grid__cell--width-50.o-grid__cell--offset-20
+          p.tease.med.first-highlight
+            b S
+            |o it’s not magic after all, it is just an API. But she doesn’t need to know that yet.
+
+      .u-center-block
+        a.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") Give it a try

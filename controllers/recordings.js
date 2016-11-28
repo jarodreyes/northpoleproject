@@ -6,14 +6,16 @@ var express = require('express')
 // POST: /recordings
 router.post('/', function (req, res) {
   var userId = req.query.userId;
+  var url = req.body.RecordingUrl;
   if (userId) {
     User.findOne({ _id: userId })
     .then(function (user) {
       user.recordings.push({
         phoneNumber: req.body.From,
         transcription: req.body.TranscriptionText,
-        url: req.body.RecordingUrl
+        url: url
       });
+      user.sendRecording(url);
       return user.save();
     })
     .then(function () {

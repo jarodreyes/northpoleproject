@@ -3,52 +3,60 @@ extends ../layout
 block styles
   link(rel='stylesheet', media='screen'
     href='//www.authy.com/form.authy.min.css')
-  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css')
   link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css')
+  link(rel='stylesheet', href='/css/bootstrap.css')
+  link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css')
 
 block content
-  h1 Have one of Santa's helpers give you a call!
-  p.
-    Thank you for your interest in signing up! Can you tell us a bit about 
-    yourself?
+  .santa-form.o-container.o-container--medium
+    .hero
+      p.intro.first-highlight
+          b S 
+          |ignup to have Santa call you.
 
-  form(action='/users', method='POST')
-    .form-group
-      label(for='fullName') Your Full Name:
-      input.form-control(type='text', name='fullName', 
-        placeholder='Peggy Carter')
+    form(action='/users', method='POST')
+      .o-grid
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='fullName') Your Full Name:
+          input.c-field(type='text', name='fullName', 
+            placeholder='Susan Walker')
 
-    .form-group
-      label(for='email') Your E-Mail Address:
-      input.form-control(type='email', name='email', 
-        placeholder='pcarter@ssr.gov')
+      .o-grid
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='email') Your E-Mail Address:
+          input.c-field(type='email', name='email', 
+            placeholder='swalker@macys.com')
 
-    .form-group
-      label(for='password') Your Password:
-      input.form-control(type='password', name='password')
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='password') Your Password:
+          input.c-field(type='password', name='password')
 
-    .form-group
-      label(for='countryCode') Country Code:
-      select(id='authy-countries', name='countryCode')
+      .o-grid
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='countryCode') Country Code:
+          select(id='authy-countries', name='countryCode')
 
-    .form-group
-      label(for='phone') Mobile Phone:
-      input.form-control(type='text', name='phone', placeholder='651-867-5309')
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='phone') Mobile Phone:
+          input.c-field.phone(type='text', name='phone', placeholder='555-MIR-ACLE')
 
-    .form-group
-      label.col-sm-4.control-label(for='time') Have Santa Call At:
-      .col-sm-8
-        input#inputDate.form-control(type='text', name='time', placeholder='Pick a Date', required='')
+      .o-grid
+        .o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='time') Have Santa Call At:
+          .o-field.o-field--icon-left
+            i.fa.fa-fw.fa-calendar.c-icon
+            input#inputDate.c-field(type='text', name='time', placeholder='Pick a Date', required='')
 
-    .form-group
-      label.col-sm-4.control-label(for='selectTimeZone') Time Zone
-      .col-sm-8
-        select#selectTimeZone.form-control(name='timeZone', required='')
-          each zone in timeZones
-            option()
-            option(value="#{zone}") !{zone}
+        .o-form-element.o-grid__cell.o-grid__cell--width-50
+          label.c-label(for='selectTimeZone') Time Zone
+          select#selectTimeZone.c-field(name='timeZone', required='')
+            each zone in timeZones
+              option()
+              option(value="#{zone}") !{zone}
 
-    button.btn.btn-primary(type='submit') Create Account
+      .u-center-block
+        button.c-button.c-button--rounded.c-button--error.u-center-block__content(type='submit') Create Account
 
 block scripts
   // Include Authy form helpers and additional helper script
@@ -56,4 +64,5 @@ block scripts
   script(src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js')
+  script(src='/js/jquery.maskedinput.js')
   script(src='/js/create_form.js')

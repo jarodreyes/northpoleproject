@@ -1,0 +1,287 @@
+@font-face {
+    font-family: 'Windsor';
+    src: url('windsorelongatedbt-webfont.woff2') format('woff2'),
+         url('windsorelongatedbt-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Windsor';
+    src: url('ufonts.com_windsor-bt-roman-webfont.woff2') format('woff2'),
+         url('ufonts.com_windsor-bt-roman-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Windsor';
+    src: url('windsor_lt_bt_light-webfont.woff2') format('woff2'),
+         url('windsor_lt_bt_light-webfont.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Windsor';
+    src: url('windsorlightcondensedbt-webfont.woff2') format('woff2'),
+         url('windsorlightcondensedbt-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+// mixins
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+// variables
+$blue: #565B73;
+$offWhite: #dedede;
+$white: #F22F46;
+$skyBlue: #ECF7FB;
+$lightGray: #F5F5F5;
+
+body {
+    background:url(../img/stars.gif) black;
+    font-family:'Windsor', serif;
+    font-weight:200;
+    font-size:16px;
+}
+p {
+    margin:0px;
+}
+h1 {
+    font-weight: 300;
+}
+h2 {
+    font-weight: 200;
+}
+h3 {
+    font-weight:500;
+    font-size:2em;
+}
+#main {
+    .logo {
+            height: 210px;
+        img {
+            width:190px;
+        }
+    }
+    .hero {
+        color:$offWhite;
+        text-align:center;
+    }
+    .intro {
+        font-size:2em;
+        line-height: 1.25em;
+        margin-top: -20px;
+    }
+    .first-highlight {
+        b {
+            font-size: 2.35em;
+            letter-spacing: -10px;
+            font-weight: 200;
+        }
+    }
+    .subtext {
+        font-size:1.375em;
+        margin-top:26px;
+    }
+    small {
+        color:$blue;
+        font-family:'Whitney', Helvetica, sans-serif;
+    }
+    a.c-button, button.c-button {
+        display:block;
+        width: 190px;
+        padding: 16px;
+        font-family: 'UnitedSansCond', Arial, sans-serif;
+        text-transform: uppercase;
+    }
+    .pole {
+        img {
+            width:90px;
+        }
+        .beacon {
+            @include transition(all .75s ease);
+            width:1px;
+            height:1px;
+            border:1px solid rgba(255,255,255,0.15);
+            border-radius:50%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            top:45px;
+            &.grow {
+                width:100px;
+                height:100px;
+                border:1px solid rgba(255,255,255,0.3);
+            }
+            &.fade-out {
+                border:1px solid rgba(255,255,255,0);
+            }
+        }
+    }
+    .instructions {
+        background:$skyBlue;
+        min-height:400px;
+        margin-top:90px;
+        position: relative;
+        color: black;
+        .o-container--medium {
+            z-index: 1;
+            position: relative;
+        }
+        &:before {
+            content:"";
+            background: -webkit-linear-gradient(white, $skyBlue); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(white, $skyBlue); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(white, $skyBlue); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(white, $skyBlue); /* Standard syntax */
+            width: 100%;
+            top:20px;
+            height: 510px;
+            position: absolute;
+            z-index: 0;
+        }
+        
+        &:after {
+            content: "";
+            background: url(/img/dome.svg) center top;
+            top: -80px;
+            background-size: 160% auto;
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100px;
+        }
+        h1 {
+            font-size: 3em;
+            border-top: 1px dashed $blue;
+            border-bottom: 1px dashed $blue;
+            padding: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 60px 0px;
+            letter-spacing: 3px;
+        }
+        h2.number {
+            display: block;
+            background: white;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            text-align: center;
+            padding: 14px;
+            font-size: 2em;
+        }
+        .inst {
+            margin-top:70px;
+            p {
+                font-size:1.675em;
+            }
+            small {
+                margin-top: 5px;
+                font-weight: 500;
+                display: block;
+            }
+        }
+    }
+    .tease {
+        font-size:2em;
+        line-height: 1.25em;
+        padding-top:60px;
+        b {
+            letter-spacing: 0px;
+        }
+        &.med {
+            font-size: 1.25em;
+        }
+    }
+}
+
+.santa-form {
+    form {
+        background:$lightGray;
+        border-radius:10px;
+        padding:10px 30px;
+        font-weight:200;
+        letter-spacing: 1px;
+        input {
+            font-weight:200;
+        }
+        #inputDate {
+            font-family: 'UnitedSansCond', Arial, sans-serif;
+        }
+        .countries-input, .chosen-container-single .chosen-single {
+            display: block;
+            height:auto;
+            width: 100%;
+            margin: 0;
+            color:black;
+            padding: .5em !important;
+            border: 1px solid #96a8b2;
+            border-radius: 4px;
+            outline: 0;
+            background-color: #fff !important;
+            background: -webkit-linear-gradient(white, white); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(white, white); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(white, white); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(white, white); /* Standard syntax */
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 400;
+            resize: vertical;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    }
+    p.intro {
+        color:$offWhite;
+        font-size: 1.25em !important;
+    }
+}
+
+// Override blaze styles
+.c-button--error {
+    background-color:$white;
+}
+.u-center-block {
+    min-height:100px;
+}
+.chosen-container {
+    max-width: 95% !important;
+}
+
+.demo {
+    background-color:#eee;
+    border:1px solid #ccc;
+    border-radius:5px;
+    padding:10px;
+}
+
+.message-list p {
+    padding:10px;
+}
+
+.message-list .box {
+    border-radius:3px;
+    border:1px solid #eee;
+    background: white;
+}
+
+.message-list i {
+    float:right;
+    margin:5px;
+    cursor:pointer;
+    color:#787878;
+}
+
+footer {
+
+}

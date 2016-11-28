@@ -39,11 +39,15 @@
     "moment-timezone": "^0.5.0",
     "mongoose": "^4.0.6",
     "morgan": "^1.5.1",
+    "node-sass-middleware": "^0.10.0",
+    "sendgrid": "^4.7.1",
     "twilio": "^1.11.1"
   },
   "devDependencies": {
     "chai": "^2.1.0",
     "mocha": "^2.1.0"
   },
-  "engines" : { "node" : ">=4.1.0 <5.5.0" }
+  "engines": {
+    "node": ">=4.1.0 <5.5.0"
+  }
 }

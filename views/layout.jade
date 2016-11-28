@@ -16,12 +16,12 @@ html(lang='en')
     // Include Font Awesome Icons
     link(rel='stylesheet',
       href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
-
-    // Twitter Bootstrap included for some basic styling
-    link(rel='stylesheet', 
-      href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    link(rel='stylesheet', 
-      href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/generics.global.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/objects.grid.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/objects.containers.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/components.inputs.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/components.buttons.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/blaze/dist/utilities.alignment.min.css')
 
     // HTML 5 shims for older IE
     <!--[if lt IE 9]>
@@ -35,26 +35,8 @@ html(lang='en')
     block styles
 
   body
-    // Bootstrap-powered nav bar
-    nav.navbar.navbar-default.navbar-fixed-top
-      .container
-        .navbar-header
-
-          //- Nav bar toggle for mobile
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse',
-            data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-            i.fa.fa-bars
-
-          a.navbar-brand(href='/') Account Verification
-
-        #navbar.navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-right
-            li
-              a(href='/users/new') Sign Up
-
-
     //- Include page content
-    #main.container
+    #main
 
       // Display any error or informational messages
       mixin messages(list)
@@ -72,11 +54,13 @@ html(lang='en')
             +messages(successes)
 
       //- Include page content 
+      .o-container.o-container--medium
+        .logo.u-center-block
+          img.u-center-block__content(src="/img/np-logo.svg", alt="The North Pole project logo")
       block content
 
     footer.container.
-      Made with <i class="fa fa-heart"></i> by your pals 
-      <a href="http://www.twilio.com">@twilio</a>.
+      
 
     // Include jQuery and Bootstrap scripts
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')

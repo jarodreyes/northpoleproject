@@ -146,6 +146,7 @@ UserSchema.methods.requiresCall = function (date) {
         var now = moment(date).utc();
         var diff = moment.duration(schedule.diff(now)).asMinutes();
         var timing = Math.round(diff);
+        console.log("Email: "+ self.email);
         console.log("Schedule: "+ schedule);
         console.log("Now: "+now);
         console.log("Diff: "+diff);
@@ -184,9 +185,9 @@ UserSchema.statics.makeCalls = function(callback) {
             var options = {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
-                url: 'http://jreyes.ngrok.io/ivr/welcome?userId=' + user.id,
+                url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
                 record: true,
-                recordingStatusCallback: 'http://jreyes.ngrok.io/recordings?userId='+ user.id
+                recordingStatusCallback: 'http://santaphone.org/recordings?userId='+ user.id
             };
 
             // Send the message!

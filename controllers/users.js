@@ -28,7 +28,7 @@ exports.create = function(request, response) {
         password: params.password,
         notification: 0,
         timeZone: params.timeZone, 
-        time:moment(params.time, "MM-DD-YYYY hh:mma")
+        time:momentTimeZone.tz(params.time, "MM-DD-YYYY hh:mma", params.timeZone)
     });
 
     user.save(function(err, doc) {
@@ -135,7 +135,7 @@ exports.verify = function(request, response) {
         }
 
         // Send confirmation text message
-        var message = 'You did it! Signup complete :)';
+        var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling you soon. :)';
         user.sendMessage(message, function(err) {
             if (err) {
                 request.flash('errors', 'You are signed up, but '

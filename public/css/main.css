@@ -229,7 +229,8 @@ h3 {
 
 .message-list .box {
   border-radius: 3px;
-  border: 1px solid #eee; }
+  border: 1px solid #eee;
+  background: white; }
 
 .message-list i {
   float: right;

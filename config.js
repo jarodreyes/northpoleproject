@@ -31,7 +31,7 @@ cfg.authyKey = process.env.AUTHY_API_KEY;
 // MONGOLAB_URI is for the MongoLab add-on for Heroku deployment
 // MONGO_PORT_27017_TCP_ADDR is for connecting to the Mongo container
 // when using docker-compose
-cfg.mongoUrl = process.env.MONGOLAB_URI || process.env.MONGO_URL || process.env.MONGO_PORT_27017_TCP_ADDR;
+cfg.mongoUrl = process.env.MONGOLAB_URI || process.env.MONGO_SANTA_URL || process.env.MONGO_PORT_27017_TCP_ADDR;
 
 // Export configuration object
 module.exports = cfg;

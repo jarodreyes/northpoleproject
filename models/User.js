@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var config = require('../config');
 var moment = require('moment');
 var Emailer = require('../emailer');
@@ -63,7 +63,7 @@ UserSchema.pre('save', function(next) {
         if (err) return next(err);
 
         // hash the password using our new salt
-        bcrypt.hash(self.password, salt, function(err, hash) {
+        bcrypt.hash(self.password, salt, null, function(err, hash) {
             if (err) return next(err);
 
             // override the cleartext password with the hashed one

@@ -147,12 +147,6 @@ UserSchema.methods.requiresCall = function (date) {
         var now = moment(date).utc();
         var diff = moment.duration(schedule.diff(now)).asMinutes();
         var timing = Math.round(diff);
-        console.log("Email: "+ self.email);
-        console.log("Schedule: "+ schedule);
-        console.log("Now: "+now);
-        console.log("Diff: "+diff);
-        console.log("Timing: "+timing);
-        console.log("This Notification:" +self.notification)
         return timing === self.notification;
         // return timing === -8;
     } catch(err) {

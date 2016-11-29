@@ -134,6 +134,7 @@ UserSchema.methods.sendMessage = function(message, cb) {
 
 // Send a text message via twilio to this user
 UserSchema.methods.sendRecording = function(url) {
+    console.log("Sending recording url: "+url);
     Emailer.sendEmail(this, url);
 };
 
@@ -185,9 +186,9 @@ UserSchema.statics.makeCalls = function(callback) {
             var options = {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
-                url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
+                url: 'https://jreyes.ngrok.io/ivr/welcome?userId=' + user.id,
                 record: true,
-                recordingStatusCallback: 'http://santaphone.org/recordings?userId='+ user.id
+                recordingStatusCallback: 'http://jreyes.ngrok.io/recordings?userId='+ user.id
             };
 
             // Send the message!

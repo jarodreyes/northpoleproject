@@ -29,6 +29,9 @@ cfg.elfNumber = process.env.ELF_NUMBER;
 // Authy application
 cfg.authyKey = process.env.AUTHY_API_KEY;
 
+// Sendgrid
+cfg.sendgridKey = process.env.SENDGRID_API_KEY;
+
 // MongoDB connection string - MONGO_URL is for local dev,
 // MONGOLAB_URI is for the MongoLab add-on for Heroku deployment
 // MONGO_PORT_27017_TCP_ADDR is for connecting to the Mongo container

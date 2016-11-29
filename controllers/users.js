@@ -135,6 +135,7 @@ exports.verify = function(request, response) {
         }
 
         // Send confirmation text message
+        // var time = moment(user.time)
         var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling you soon. :)';
         user.sendMessage(message, function(err) {
             if (err) {

@@ -13,7 +13,7 @@ router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
     .pause({length: 1})
     .play('http://jardiohead.s3.amazonaws.com/elf-first.mp3')
     .record({
-      playBeeb: false,
+      playBeep: false,
       timeout: 4,
       action: '/ivr/step2'
     })
@@ -30,7 +30,7 @@ router.post('/step2', twilio.webhook({validate: false}), function (req, res) {
   twiml
     .play('http://jardiohead.s3.amazonaws.com/elf-second.mp3')
     .record({
-      playBeeb: false,
+      playBeep: false,
       timeout: 4,
       action: '/ivr/step3'
     })
@@ -47,7 +47,7 @@ router.post('/step3', twilio.webhook({validate: false}), function (req, res) {
   twiml
     .play('http://jardiohead.s3.amazonaws.com/elf-third.mp3')
     .record({
-      playBeeb: false,
+      playBeep: false,
       timeout: 4,
       action: '/ivr/step4'
     })

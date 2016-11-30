@@ -182,7 +182,7 @@ UserSchema.statics.makeCalls = function(callback) {
                 from: config.twilioNumber,
                 url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
                 record: true,
-                recordingStatusCallback: 'http://santaphone.org/recordings?userId='+ user.id
+                recordingStatusCallback: 'https://santaphone.org/recordings?userId=' + user.id,
             };
 
             // Send the message!

@@ -1,6 +1,56 @@
 var express = require('express')
   , router = express.Router()
-  , twilio = require('twilio');
+  , twilio = require('twilio')
+  , User = require('../models/User');
+
+// POST: /ivr/events
+router.post('/events', twilio.webhook({validate: false}), function (req, res) {
+  var userId = req.query.userId;
+  var url = req.body.RecordingUrl;
+
+  console.log("Events status is: "+req.body.CallStatus);
+
+  // If the call was completed let's send the email with the recording.
+  if (req.body.CallStatus === 'completed') {
+    if (userId) {
+      User.findOne({ _id: userId })
+      .then(function (user) {
+        if (url) {
+          user.recordings.push({
+            url: url,
+          });
+          user.sendRecording(url);
+          return user.save();
+        }
+      })
+      .then(function () {
+        // Send recording to the user email
+        res.status(201).send('Recording created');
+      })
+      .catch(function (err) {
+        console.log(err);
+        res.status(500).send('Could not create a recording');
+      });
+    } else {
+      res.status(201).send('Recording ended, nothing created.');
+    } 
+  // If the call was answered let's mark this user as being called.
+  } else if (req.body.CallStatus === 'in-progress') {
+    if (userId) {
+      User.findOne({ _id: userId })
+      .then(function (user) {
+        user.called = true;
+        user.save();
+      })
+      .catch(function (err) {
+        console.log(err);
+        res.status(500).send('Could not save user');
+      });
+    }
+  } else {
+    console.log("Call Status: "+req.body.CallStatus);
+  }
+});
 
 // POST: /ivr/welcome
 router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {

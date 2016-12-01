@@ -35,11 +35,14 @@ var UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    called: {
+        type: Boolean,
+        default: false
+    },
     authyId: String,
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     password: {
         type: String,
@@ -142,13 +145,16 @@ UserSchema.methods.sendRecording = function(url) {
 UserSchema.methods.requiresCall = function (date) {
     var self = this;
     try {
-        console.log('Do I require a call?');
-        var schedule = moment(self.time).tz(self.timeZone).utc();
-        var now = moment(date).utc();
-        var diff = moment.duration(schedule.diff(now)).asMinutes();
-        var timing = Math.round(diff);
-        return timing === self.notification;
-        // return timing === -8;
+        if (!self.called) {
+            console.log('Do I require a call?');
+            var schedule = moment(self.time).tz(self.timeZone).utc();
+            var now = moment(date).utc();
+            var diff = moment.duration(schedule.diff(now)).asMinutes();
+            var timing = Math.round(diff);
+            return timing <= self.notification;
+        } else {
+            return false;
+        }
     } catch(err) {
         console.log("ERROR! "+err);
     }
@@ -181,6 +187,9 @@ UserSchema.statics.makeCalls = function(callback) {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
                 url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
+                statusCallback: 'https://santaphone.org/ivr/events?userId=' + user.id,
+                statusCallbackMethod: "POST",
+                statusCallbackEvent: ["answered", "completed"],
                 record: true,
                 recordingStatusCallback: 'https://santaphone.org/recordings?userId=' + user.id,
             };

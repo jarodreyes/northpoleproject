@@ -135,8 +135,8 @@ exports.verify = function(request, response) {
         }
 
         // Send confirmation text message
-        // var time = moment(user.time)
-        var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling you soon. :)';
+        var time = momentTimeZone(user.time).tz(user.timeZone).format('MMMM Do YYYY [at] h:mm:ss a');
+        var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling +'+ user.countryCode +' '+ user.phone +' on '+time+'. Make sure the recipient of the call is nearby. :)';
         user.sendMessage(message, function(err) {
             if (err) {
                 request.flash('errors', 'You are signed up, but '

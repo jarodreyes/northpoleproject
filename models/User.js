@@ -169,9 +169,7 @@ UserSchema.statics.makeCalls = function(callback) {
   User
     .find()
     .then(function (users) {
-        console.log('Found some Users potentially!');
         users = users.filter(function(user) {
-            console.log('Searching Users.');
             return user.requiresCall(searchDate);
         });
         if (users.length > 0) {
@@ -187,6 +185,7 @@ UserSchema.statics.makeCalls = function(callback) {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
                 url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
+                ifMachine: "Hangup",
                 statusCallback: 'https://santaphone.org/ivr/events?userId=' + user.id,
                 statusCallbackMethod: "POST",
                 statusCallbackEvent: ["answered", "completed"],

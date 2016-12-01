@@ -15,7 +15,7 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
     if (userId) {
       User.findOne({ _id: userId })
       .then(function (user) {
-        if (url) {
+        if (url && user.recordings.length === 0) {
           user.recordings.push({
             url: url,
           });

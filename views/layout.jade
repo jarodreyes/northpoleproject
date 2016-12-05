@@ -1,7 +1,25 @@
 doctype html
 html(lang='en')
   head
-    title= title || 'Account Verification with Node.js and Express'
+    title= title || 'Santa Phone - The North Pole is calling'
+    meta(name="description", content="Santa's very own call center. Schedule a time to have one of Santa's helpers call your child or loved one. When the call is over you'll get a list of what your child wants :)")
+    meta(name="author", content="Twilio")
+    meta(content='text/html;charset=UTF-8', http-equiv='Content-type')
+    meta(content='width=device-width, initial-scale=1.0', name='viewport')
+    // Open Graph protocol:
+    meta(property="og:title", content="Santa Phone - The North Pole is calling.")
+    meta(property="og:description", content="Santa's phone request hotline. Schedule a time to have one of Santa's helpers call your child or loved one. When the call is over you'll get a list of what your child wants :)")
+    meta(property="og:type", content="website")
+    meta(property="og:locale", content="en_US")
+    meta(property="og:url", content="https://santaphone.org")
+    meta(property="og:image", content="http://jardiohead.s3.amazonaws.com/social-santaphone.png")
+    meta(property="og:site_name", content="SantaPhone")
+    meta(property="fb:admins", content="5200953")
+    meta(property="fb:admins", content="40012883")
+    meta(property="twitter:card", content="summary")
+    meta(property="twitter:site", content="@twilio")
+    meta(property="twitter:domain", content="SantaPhone")
+    meta(property="twitter:creator", content="@jreyesdev")
 
     // Twilio shortcut icons
     link(rel='shortcut icon', 
@@ -9,7 +27,7 @@ html(lang='en')
     link(rel='apple-touch-icon', 
       href='//twilio.com/bundles/marketing/img/favicons/favicon_57.png')
     link(rel='apple-touch-icon', sizes='72x72', 
-      href='/bundles/marketing/img/favicons/favicon_72.png')
+      href='//twilio.com/bundles/marketing/img/favicons/favicon_72.png')
     link(rel='apple-touch-icon' sizes='114x114' 
       href='//twilio.com/bundles/marketing/img/favicons/favicon_114.png')
 
@@ -70,3 +88,14 @@ html(lang='en')
     script(src='/js/main.js')
     //- Include any page-specific scripts
     block scripts
+
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-88517404-2', 'auto');
+      ga('send', 'pageview');
+
+</script>

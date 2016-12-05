@@ -18,6 +18,7 @@ exports.showCreate = function(request, response) {
 // create a new user based on the form submission
 exports.create = function(request, response) {
     var params = request.body;
+    console.log('PARAMS: '+ JSON.stringify(params, true, 2));
     
     // Create a new user based on form parameters
     var user = new User({
@@ -25,7 +26,6 @@ exports.create = function(request, response) {
         email: params.email,
         phone: params.phone,
         countryCode: params.countryCode,
-        password: params.password,
         notification: 0,
         timeZone: params.timeZone, 
         time:momentTimeZone.tz(params.time, "MM-DD-YYYY hh:mma", params.timeZone)

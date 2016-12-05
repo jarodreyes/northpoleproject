@@ -22,15 +22,10 @@ block content
           input.c-field(type='text', name='fullName', 
             placeholder='Susan Walker')
 
-      .o-grid
         .o-form-element.o-grid__cell.o-grid__cell--width-50
           label.c-label(for='email') Your E-Mail Address:
           input.c-field(type='email', name='email', 
             placeholder='swalker@macys.com')
-
-        .o-form-element.o-grid__cell.o-grid__cell--width-50
-          label.c-label(for='password') Your Password:
-          input.c-field(type='password', name='password')
 
       .o-grid
         .o-form-element.o-grid__cell.o-grid__cell--width-50
@@ -62,7 +57,8 @@ block scripts
   // Include Authy form helpers and additional helper script
   script(src='//www.authy.com/form.authy.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.10/moment-timezone-with-data.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js')
   script(src='/js/jquery.maskedinput.js')
   script(src='/js/create_form.js')

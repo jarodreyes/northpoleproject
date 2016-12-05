@@ -185,7 +185,6 @@ UserSchema.statics.makeCalls = function(callback) {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
                 url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
-                ifMachine: "Hangup",
                 statusCallback: 'https://santaphone.org/ivr/events?userId=' + user.id,
                 statusCallbackMethod: "POST",
                 statusCallbackEvent: ["answered", "completed"],

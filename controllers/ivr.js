@@ -36,6 +36,7 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
     } 
   // If the call was answered let's mark this user as being called.
   } else if (req.body.CallStatus === 'in-progress') {
+    console.log('Checked user. Call completed. Status: '+req.body.CallStatus);
     if (userId) {
       User.findOne({ _id: userId })
       .then(function (user) {
@@ -63,10 +64,11 @@ router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
     .pause({length: 1})
     .play('http://jardiohead.s3.amazonaws.com/elf-first.mp3')
     .record({
-      playBeep: false,
-      timeout: 4,
+      playBeep: true,
+      timeout: 5,
       action: '/ivr/step2'
     })
+    .redirect('/ivr/welcome')
   res.send(twiml.toString());
 });
 
@@ -80,10 +82,11 @@ router.post('/step2', twilio.webhook({validate: false}), function (req, res) {
   twiml
     .play('http://jardiohead.s3.amazonaws.com/elf-second.mp3')
     .record({
-      playBeep: false,
-      timeout: 4,
+      playBeep: true,
+      timeout: 5,
       action: '/ivr/step3'
     })
+    .redirect('/ivr/step2')
   res.send(twiml.toString());
 });
 
@@ -97,10 +100,11 @@ router.post('/step3', twilio.webhook({validate: false}), function (req, res) {
   twiml
     .play('http://jardiohead.s3.amazonaws.com/elf-third.mp3')
     .record({
-      playBeep: false,
-      timeout: 4,
+      playBeep: true,
+      timeout: 5,
       action: '/ivr/step4'
     })
+    .redirect('/ivr/step3')
   res.send(twiml.toString());
 });
 

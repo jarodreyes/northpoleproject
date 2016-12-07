@@ -66,7 +66,8 @@ router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
     .record({
       playBeep: true,
       timeout: 5,
-      action: '/ivr/step2'
+      action: '/ivr/step2',
+      transcribe: true
     })
     .redirect('/ivr/welcome')
   res.send(twiml.toString());
@@ -84,7 +85,8 @@ router.post('/step2', twilio.webhook({validate: false}), function (req, res) {
     .record({
       playBeep: true,
       timeout: 5,
-      action: '/ivr/step3'
+      action: '/ivr/step3',
+      transcribe: true
     })
     .redirect('/ivr/step2')
   res.send(twiml.toString());
@@ -102,7 +104,8 @@ router.post('/step3', twilio.webhook({validate: false}), function (req, res) {
     .record({
       playBeep: true,
       timeout: 5,
-      action: '/ivr/step4'
+      action: '/ivr/step4',
+      transcribe: true
     })
     .redirect('/ivr/step3')
   res.send(twiml.toString());

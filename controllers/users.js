@@ -18,7 +18,6 @@ exports.showCreate = function(request, response) {
 // create a new user based on the form submission
 exports.create = function(request, response) {
     var params = request.body;
-    console.log('PARAMS: '+ JSON.stringify(params, true, 2));
     
     // Create a new user based on form parameters
     var user = new User({

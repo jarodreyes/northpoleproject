@@ -7,6 +7,7 @@ var recordings = require('./recordings');
 module.exports = function(app) {
     // Render home page
     app.get('/', home.show);
+    app.post('/email', home.email);
 
     // Routes for account creation
     app.get('/users/new', users.showCreate);

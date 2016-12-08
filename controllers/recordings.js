@@ -16,6 +16,7 @@ router.post('/', function (req, res) {
           url: url,
         });
         user.sendRecording(url);
+        if (!user.called) user.called = true;
         return user.save();
       }
     })

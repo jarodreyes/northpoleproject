@@ -4,6 +4,8 @@ var express = require('express')
   , User = require('../models/User');
 
 // POST: /ivr/events
+// This is a webhook that receives every callStatus event triggered by the outgoing call. 
+// The outgoing call is initiated by User.makeCalls()
 router.post('/events', twilio.webhook({validate: false}), function (req, res) {
   var userId = req.query.userId;
   var url = req.body.RecordingUrl;
@@ -54,6 +56,7 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
 });
 
 // POST: /ivr/welcome
+// Welcomes the child and asks them what they want for christmas.
 router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');
@@ -73,7 +76,8 @@ router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
   res.send(twiml.toString());
 });
 
-// POST: /ivr/welcome
+// POST: /ivr/step2
+// Asks the child if there is anything else they would like to tell Santa?
 router.post('/step2', twilio.webhook({validate: false}), function (req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');
@@ -92,7 +96,8 @@ router.post('/step2', twilio.webhook({validate: false}), function (req, res) {
   res.send(twiml.toString());
 });
 
-// POST: /ivr/welcome
+// POST: /ivr/step3
+// Last question. Asks the child if they have made nice choices today.
 router.post('/step3', twilio.webhook({validate: false}), function (req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');
@@ -111,7 +116,7 @@ router.post('/step3', twilio.webhook({validate: false}), function (req, res) {
   res.send(twiml.toString());
 });
 
-// POST: /ivr/welcome
+// POST: /ivr/step4
 router.post('/step4', twilio.webhook({validate: false}), function (req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');
@@ -139,6 +144,7 @@ router.post('/join', twilio.webhook({validate: false}), function (req, res) {
   res.send(twiml.toString());
 });
 
+// Easter egg, if the user calls the number back, we need to have a response.
 router.post('/music', twilio.webhook({validate: false}), function (req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');

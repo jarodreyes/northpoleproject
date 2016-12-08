@@ -145,7 +145,7 @@ UserSchema.methods.sendRecording = function(url) {
 UserSchema.methods.requiresCall = function (date) {
     var self = this;
     try {
-        if (!self.called) {
+        if (!self.called && self.verified) {
             console.log('Do I require a call?');
             var schedule = moment(self.time).tz(self.timeZone).utc();
             var now = moment(date).utc();
@@ -161,7 +161,7 @@ UserSchema.methods.requiresCall = function (date) {
     
 };
 
-// Make call to User
+// Make an outgoing call to any User who requires one. This is based on the time they scheduled the call.
 UserSchema.statics.makeCalls = function(callback) {
 
   // now

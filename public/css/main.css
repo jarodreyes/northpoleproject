@@ -237,3 +237,13 @@ h3 {
   margin: 5px;
   cursor: pointer;
   color: #787878; }
+
+footer {
+  background: #ECF7FB;
+  padding: 50px 0px; }
+  footer .u-center-block {
+    margin: 20px 0px; }
+  footer img {
+    width: 400px; }
+  footer a {
+    display: block; }

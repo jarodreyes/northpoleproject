@@ -283,5 +283,16 @@ h3 {
 }
 
 footer {
-
+    background: $skyBlue;
+    padding: 50px 0px;
+    .u-center-block {
+        margin:20px 0px;
+    }
+    img {
+        width:400px;
+        
+    }
+    a {
+        display: block;
+    }
 }

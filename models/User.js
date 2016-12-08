@@ -184,8 +184,8 @@ UserSchema.statics.makeCalls = function(callback) {
             var options = {
                 to: "+"+user.countryCode + user.phone,
                 from: config.twilioNumber,
-                url: 'https://jreyes.ngrok.io/ivr/welcome?userId=' + user.id,
-                statusCallback: 'https://jreyes.ngrok.io/ivr/events?userId=' + user.id,
+                url: 'https://santaphone.org/ivr/welcome?userId=' + user.id,
+                statusCallback: 'https://santaphone.org/ivr/events?userId=' + user.id,
                 statusCallbackMethod: "POST",
                 statusCallbackEvent: ["answered", "completed"],
                 record: true,

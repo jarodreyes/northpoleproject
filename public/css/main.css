@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Teko:300,400");
+@font-face {
+  font-family: 'Whitney';
+  src: url("../fonts/Whitney/whitney-book-webfont.eot");
+  src: url("../fonts/Whitney/whitney-book-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Whitney/whitney-book-webfont.woff") format("woff"), url("../fonts/Whitney/whitney-book-webfont.ttf") format("truetype"), url("../fonts/Whitney/whitney-book-webfont.svg#fonts/whitney_bookwebfont") format("svg");
+  font-weight: 200;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Whitney';
+  src: url("../fonts/Whitney/whitney-semibold-webfont.eot");
+  src: url("../fonts/Whitney/whitney-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Whitney/whitney-semibold-webfont.woff") format("woff"), url("../fonts/Whitney/whitney-semibold-webfont.ttf") format("truetype"), url("../fonts/Whitney/whitney-semibold-webfont.svg#fonts/whitney_semiboldwebfont") format("svg");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Whitney';
+  src: url("../fonts/Whitney/whitney-bookitalic-webfont.eot");
+  src: url("../fonts/Whitney/whitney-bookitalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Whitney/whitney-bookitalic-webfont.woff") format("woff"), url("../fonts/Whitney/whitney-bookitalic-webfont.ttf") format("truetype"), url("../fonts/Whitney/whitney-bookitalic-webfont.svg#fonts/whitney_bookitalicwebfont") format("svg");
+  font-weight: 200;
+  font-style: italic; }
+
 @font-face {
   font-family: 'Windsor';
   src: url("windsorelongatedbt-webfont.woff2") format("woff2"), url("windsorelongatedbt-webfont.woff") format("woff");
@@ -41,6 +63,31 @@ h3 {
   font-weight: 500;
   font-size: 2em; }
 
+body.home .light-form {
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -ms-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: -1; }
+  body.home .light-form.show {
+    display: block;
+    opacity: 1;
+    z-index: 2; }
+
+body.home .santa-form {
+  background: #F5F5F5;
+  border-radius: 10px;
+  padding: 1px 30px;
+  width: 850px; }
+  body.home .santa-form .button-block {
+    min-height: 120px; }
+
 #main .logo {
   height: 210px; }
   #main .logo img {
@@ -51,9 +98,8 @@ h3 {
   text-align: center; }
 
 #main .intro {
-  font-size: 2em;
-  line-height: 1.25em;
-  margin-top: -20px; }
+  font-size: 1.85em;
+  line-height: 1.25em; }
 
 #main .first-highlight b {
   font-size: 2.35em;
@@ -68,12 +114,20 @@ h3 {
   color: #565B73;
   font-family: 'Whitney', Helvetica, sans-serif; }
 
+#main input, #main .c-button, #main .chosen-single {
+  font-family: 'Teko', Arial, sans-serif;
+  letter-spacing: 2px; }
+
 #main a.c-button, #main button.c-button {
   display: block;
   width: 190px;
-  padding: 16px;
-  font-family: 'UnitedSansCond', Arial, sans-serif;
-  text-transform: uppercase; }
+  padding: 8px;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  height: 45px;
+  box-sizing: border-box;
+  font-weight: 300;
+  letter-spacing: 4px; }
 
 #main .pole img {
   width: 90px; }
@@ -168,49 +222,56 @@ h3 {
   #main .tease.med {
     font-size: 1.25em; }
 
-.santa-form form {
-  background: #F5F5F5;
-  border-radius: 10px;
-  padding: 10px 30px;
-  font-weight: 200;
-  letter-spacing: 1px; }
-  .santa-form form input {
-    font-weight: 200; }
-  .santa-form form #inputDate {
-    font-family: 'UnitedSansCond', Arial, sans-serif; }
-  .santa-form form .countries-input, .santa-form form .chosen-container-single .chosen-single {
-    display: block;
-    height: auto;
-    width: 100%;
-    margin: 0;
-    color: black;
-    padding: .5em !important;
-    border: 1px solid #96a8b2;
-    border-radius: 4px;
-    outline: 0;
-    background-color: #fff !important;
-    background: -webkit-linear-gradient(white, white);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(white, white);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(white, white);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(white, white);
-    /* Standard syntax */
-    font-family: inherit;
-    font-size: 1em;
-    font-weight: 400;
-    resize: vertical;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; }
+.countries-autocomplete {
+  position: absolute !important;
+  transform: translate(-117%); }
 
-.santa-form p.intro {
-  color: #dedede;
-  font-size: 1.25em !important; }
+.santa-form {
+  position: relative; }
+  .santa-form form {
+    font-weight: 200;
+    letter-spacing: 1px; }
+    .santa-form form input {
+      font-weight: 200;
+      height: 50px;
+      font-size: 1.75em;
+      box-sizing: border-box; }
+    .santa-form form .countries-input, .santa-form form .chosen-container-single .chosen-single {
+      display: block;
+      height: 50px;
+      width: 100%;
+      margin: 0;
+      color: black;
+      padding: .5em !important;
+      border: 1px solid #96a8b2;
+      border-radius: 4px;
+      outline: 0;
+      background-color: #fff !important;
+      background: -webkit-linear-gradient(white, white);
+      /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(white, white);
+      /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(white, white);
+      /* For Firefox 3.6 to 15 */
+      background: linear-gradient(white, white);
+      /* Standard syntax */
+      font-family: inherit;
+      font-size: 24px;
+      font-weight: 300;
+      resize: vertical;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none; }
+  .santa-form p.intro {
+    text-align: center;
+    font-size: 1.75em !important;
+    margin: 30px 0px; }
 
 .c-button--error {
   background-color: #F22F46; }
+
+.c-overlay {
+  display: none; }
 
 .u-center-block {
   min-height: 100px; }

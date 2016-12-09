@@ -14,6 +14,16 @@ $(document).ready(function() {
       }, 1000);
     }, 1300);
 
+    $('.signup-button').click(function(e) {
+      e.preventDefault();
+      $('.c-overlay').show();
+      $('.light-form').addClass('show');
+    });
+
+    $('.c-overlay').click(function(e) {
+      $('.c-overlay').hide();
+      $('.light-form').removeClass('show');
+    })
 });
 
 var blinkBeacon = function(el) {
@@ -22,3 +32,4 @@ var blinkBeacon = function(el) {
     el.toggleClass('fade-out');
   },500);
 }
+

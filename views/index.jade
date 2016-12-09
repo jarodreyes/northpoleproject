@@ -1,6 +1,15 @@
 extends layout
 
+block styles
+  link(rel='stylesheet', media='screen'
+    href='//www.authy.com/form.authy.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css')
+  link(rel='stylesheet', href='/css/bootstrap.css')
+  link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css')
+
 block content
+  .c-overlay
   .o-container.o-container--medium
     .hero
       p.intro.first-highlight
@@ -10,7 +19,7 @@ block content
       p.subtext To get started, we will need to ask you a few questions.
       small We promise that this information is only between you and the team at the north pole.
       .u-center-block
-        a.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") I'm Game
+        a.signup-button.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") Call Me
     .pole.u-center-block
       #b1.beacon
       #b2.beacon
@@ -69,4 +78,19 @@ block content
             |o it’s not magic after all, it is just an API. But she doesn’t need to know that yet.
 
       .u-center-block
-        a.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") Give it a try
+        a.signup-button.c-button.c-button--rounded.c-button--error.u-center-block__content(href="/users/new/") Give it a try
+
+  .light-form
+    include ./users/_signupForm.jade
+
+block scripts
+  // Include Authy form helpers and additional helper script
+  script(src='//www.authy.com/form.authy.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.10/moment-timezone-with-data.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js')
+  script(src='/js/jquery.maskedinput.js')
+  script(src='/js/create_form.js')
+  // Include page scripts
+  script(src='/js/main.js')

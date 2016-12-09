@@ -117,6 +117,7 @@ exports.resend = function(request, response) {
 // Handle submission of verification token
 exports.verify = function(request, response) {
     var user;
+    var isAjaxRequest = request.xhr;
 
     // Load user model
     User.findById(request.params.id, function(err, doc) {

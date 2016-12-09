@@ -64,12 +64,14 @@
 // variables
 $blue: #565B73;
 $offWhite: #dedede;
-$white: #F22F46;
+$red: #F22F46;
 $skyBlue: #ECF7FB;
 $lightGray: #F5F5F5;
 
 body {
     background:url(../img/stars.gif) black;
+    background-attachment: fixed;
+    background-position: center;
     font-family:'Windsor', serif;
     font-weight:200;
     font-size:16px;
@@ -106,7 +108,8 @@ body.home {
         background:$lightGray;
         border-radius:10px;
         padding:1px 30px;
-        width:850px;
+        max-width:850px;
+        min-width:350px;
         .button-block {
             min-height:120px;
         }
@@ -156,6 +159,7 @@ body.home {
         box-sizing: border-box;
         font-weight: 300;
         letter-spacing: 4px;
+        text-decoration: none;
     }
     .pole {
         img {
@@ -261,11 +265,23 @@ body.home {
 
 .countries-autocomplete {
     position: absolute !important;
-    transform: translate(-117%);
+    // transform: translate(-117%);
 }
 
 .santa-form {
     position:relative;
+    z-index:inherit;
+    opacity: 1;
+    user-select:auto;
+    background:$lightGray;
+    border-radius:10px;
+    padding:1px 30px;
+    max-width:850px;
+    min-width:350px;
+    margin-bottom:100px;
+    .button-block {
+        min-height:120px;
+    }
     form {
         font-weight:200;
         letter-spacing: 1px;
@@ -304,11 +320,43 @@ body.home {
         font-size: 1.75em !important;
         margin:30px 0px;
     }
+    &.hide {
+        z-index:-1;
+        opacity: 0;
+        user-select:none;
+    }
+    small.messages {
+        position:relative;
+        text-align: center;
+        display: block;
+        margin-top: -30px;
+        height: 30px;
+        &.error {
+            color:$red !important;
+            &:after {
+                display:block;
+                border-bottom:1px dashed $red;
+            }
+        }
+        &.success {
+            &:after {
+                display:block;
+                border-bottom:1px dashed $blue;
+            }
+        }
+        &:after {
+            content:"";
+            display: none;
+            position:absolute;
+            width:100%;
+            bottom: 5px;
+        }
+    }
 }
 
 // Override blaze styles
 .c-button--error {
-    background-color:$white;
+    background-color:$red;
 }
 .c-overlay {
     display: none;
@@ -342,6 +390,9 @@ body.home {
     margin:5px;
     cursor:pointer;
     color:#787878;
+}
+.btn-link {
+    padding:10px 0;
 }
 
 footer {

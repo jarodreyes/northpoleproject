@@ -1,0 +1,18 @@
+#verify-form.santa-form
+  p.intro.
+    Your account has been created, but we need to make sure you're a human
+    in control of the phone number you gave us. Can you please enter the 
+    verification code we just sent to your phone?
+  small.messages
+
+  form#verify(action='/users/'+id+'/verify', method='POST')
+    .o-form-element
+      label.c-label(for='code') Verification Code:
+      input.c-field(type='text', name='code')
+
+    .u-center-block
+      button#verify-button.c-button.c-button--rounded.c-button--error.u-center-block__content(type='submit') Verify Token
+
+  form(action='/users/'+id+'/resend', method='POST')
+    .u-center-block
+      button#resend-button.c-button.c-button--rounded.c-button--success.u-center-block__content(type='submit') Resend My Code

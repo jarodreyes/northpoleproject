@@ -9,6 +9,7 @@ var getTimeZones = function(){
 exports.show = function(request, response) {
     response.render('index', {
       timeZones: getTimeZones(),
+      id: 'test',
       title: 'home'
     });
 };

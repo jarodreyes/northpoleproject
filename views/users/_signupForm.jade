@@ -1,35 +1,36 @@
-.santa-form
+#signup-form.santa-form
   p.intro.first-highlight Signup to have Santa call you.
+  small.messages
 
-  form(action='/users', method='POST')
-    .o-grid
-      .o-form-element.o-grid__cell.o-grid__cell--width-50
+  form#signup(action='/users', method='POST')
+    .o-grid.o-grid--wrap
+      .o-form-element.o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='fullName') Your Full Name:
         input.c-field(type='text', name='fullName', 
           placeholder='Susan Walker')
 
-      .o-form-element.o-grid__cell.o-grid__cell--width-50
+      .o-form-element.o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='email') Your E-Mail Address:
         input.c-field(type='email', name='email', 
           placeholder='swalker@macys.com')
 
-    .o-grid
-      .o-form-element.o-grid__cell.o-grid__cell--width-50
+    .o-grid.o-grid--wrap
+      .o-form-element.o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='countryCode') Country Code:
         select(id='authy-countries', name='countryCode')
 
-      .o-form-element.o-grid__cell.o-grid__cell--width-50
+      .o-form-element.o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='phone') Mobile Phone:
         input.c-field.phone(type='text', name='phone', placeholder='555-MIR-ACLE')
 
-    .o-grid
-      .o-grid__cell.o-grid__cell--width-50
+    .o-grid.o-grid--wrap
+      .o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='time') Have Santa Call At:
         .o-field.o-field--icon-left
           i.fa.fa-fw.fa-calendar.c-icon
           input#inputDate.c-field(type='text', name='time', placeholder='Pick a Date', required='')
 
-      .o-form-element.o-grid__cell.o-grid__cell--width-50
+      .o-form-element.o-grid__cell.o-grid__cell--width-100(class="o-grid__cell--width-50@medium")
         label.c-label(for='selectTimeZone') Time Zone
         select#selectTimeZone.c-field(name='timeZone', required='')
           each zone in timeZones
@@ -37,4 +38,4 @@
             option(value="#{zone}") !{zone}
 
     .button-block.u-center-block
-      button.c-button.c-button--rounded.c-button--error.u-center-block__content(type='submit') Notify Santa
+      button#submit-signup.c-button.c-button--rounded.c-button--error.u-center-block__content(type='submit') Notify Santa

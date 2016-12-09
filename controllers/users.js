@@ -18,6 +18,8 @@ exports.showCreate = function(request, response) {
 // create a new user based on the form submission
 exports.create = function(request, response) {
     var params = request.body;
+    var isAjaxRequest = request.xhr;
+    console.log(isAjaxRequest);
     
     // Create a new user based on form parameters
     var user = new User({
@@ -35,12 +37,20 @@ exports.create = function(request, response) {
             // To improve on this example, you should include a better
             // error message, especially around form field validation. But
             // for now, just indicate that the save operation failed
-            request.flash('errors', 'There was a problem creating your'
-                + ' account - note that all fields are required. Please'
-                + ' double-check your input and try again.');
+            if (isAjaxRequest) {
+                request.flash('errors', 'There was a problem creating your'
+                    + ' account - note that all fields are required. Please'
+                    + ' double-check your input and try again.');
+                response.status(500).send('There was a problem creating your'
+                    + ' account - note that all fields are required. Please'
+                    + ' double-check your input and try again.'); 
+            } else {
+                request.flash('errors', 'There was a problem creating your'
+                    + ' account - note that all fields are required. Please'
+                    + ' double-check your input and try again.');
+                response.redirect('/users/new');
 
-            response.redirect('/users/new');
-
+            }
         } else {
             // If the user is created successfully, send them an account
             // verification token
@@ -51,7 +61,11 @@ exports.create = function(request, response) {
                 }
 
                 // Send to token verification page
-                response.redirect('/users/'+doc._id+'/verify');
+                if (isAjaxRequest) {
+                    response.status(201).send({success:'Recording created', id: doc._id});
+                } else {
+                    response.redirect('/users/'+doc._id+'/verify');
+                }
             });
         }
     });
@@ -144,14 +158,22 @@ exports.verify = function(request, response) {
 
             // show success page
             request.flash('successes', message);
-            response.redirect('/users/'+user._id);
+            if (isAjaxRequest) {
+                response.status(201).send({success:message});
+            } else {
+                response.redirect('/users/'+user._id);
+            }
         });
     }
 
     // respond with an error
     function die(message) {
-        request.flash('errors', message);
-        response.redirect('/users/'+request.params.id+'/verify');
+        if (isAjaxRequest) {
+            response.status(500).send(message); 
+        } else {
+            request.flash('errors', message);
+            response.redirect('/users/'+request.params.id+'/verify');
+        }
     }
 };
 

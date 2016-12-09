@@ -46,6 +46,8 @@
 
 body {
   background: url(../img/stars.gif) black;
+  background-attachment: fixed;
+  background-position: center;
   font-family: 'Windsor', serif;
   font-weight: 200;
   font-size: 16px; }
@@ -84,7 +86,8 @@ body.home .santa-form {
   background: #F5F5F5;
   border-radius: 10px;
   padding: 1px 30px;
-  width: 850px; }
+  max-width: 850px;
+  min-width: 350px; }
   body.home .santa-form .button-block {
     min-height: 120px; }
 
@@ -127,7 +130,8 @@ body.home .santa-form {
   height: 45px;
   box-sizing: border-box;
   font-weight: 300;
-  letter-spacing: 4px; }
+  letter-spacing: 4px;
+  text-decoration: none; }
 
 #main .pole img {
   width: 90px; }
@@ -223,11 +227,21 @@ body.home .santa-form {
     font-size: 1.25em; }
 
 .countries-autocomplete {
-  position: absolute !important;
-  transform: translate(-117%); }
+  position: absolute !important; }
 
 .santa-form {
-  position: relative; }
+  position: relative;
+  z-index: inherit;
+  opacity: 1;
+  user-select: auto;
+  background: #F5F5F5;
+  border-radius: 10px;
+  padding: 1px 30px;
+  max-width: 850px;
+  min-width: 350px;
+  margin-bottom: 100px; }
+  .santa-form .button-block {
+    min-height: 120px; }
   .santa-form form {
     font-weight: 200;
     letter-spacing: 1px; }
@@ -266,6 +280,30 @@ body.home .santa-form {
     text-align: center;
     font-size: 1.75em !important;
     margin: 30px 0px; }
+  .santa-form.hide {
+    z-index: -1;
+    opacity: 0;
+    user-select: none; }
+  .santa-form small.messages {
+    position: relative;
+    text-align: center;
+    display: block;
+    margin-top: -30px;
+    height: 30px; }
+    .santa-form small.messages.error {
+      color: #F22F46 !important; }
+      .santa-form small.messages.error:after {
+        display: block;
+        border-bottom: 1px dashed #F22F46; }
+    .santa-form small.messages.success:after {
+      display: block;
+      border-bottom: 1px dashed #565B73; }
+    .santa-form small.messages:after {
+      content: "";
+      display: none;
+      position: absolute;
+      width: 100%;
+      bottom: 5px; }
 
 .c-button--error {
   background-color: #F22F46; }
@@ -298,6 +336,9 @@ body.home .santa-form {
   margin: 5px;
   cursor: pointer;
   color: #787878; }
+
+.btn-link {
+  padding: 10px 0; }
 
 footer {
   background: #ECF7FB;

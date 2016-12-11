@@ -35,6 +35,10 @@ var UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    consented: {
+        type: Boolean,
+        default: false
+    },
     called: {
         type: Boolean,
         default: false
@@ -54,27 +58,28 @@ var UserSchema = new mongoose.Schema({
     recordings:  [Recording]
 });
 
+UserSchema.plugin(require('mongoose-lifecycle'));
+
 // Middleware executed before save - hash the user's password
-UserSchema.pre('save', function(next) {
+UserSchema.methods.findPreConsent = function() {
     var self = this;
+    var previousConsent = false;
+    console.log('finding Pre Consent');
 
-    // only hash the password if it has been modified (or is new)
-    if (!self.isModified('password')) return next();
-
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-
-        // hash the password using our new salt
-        bcrypt.hash(self.password, salt, null, function(err, hash) {
-            if (err) return next(err);
-
-            // override the cleartext password with the hashed one
-            self.password = hash;
-            next();
-        });
+    User
+    .find({phone: self.phone})
+    .then(function (users) {
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i];
+            console.log(user.email);
+            if (user.consented) {
+                previousConsent = true;
+            }
+        }
+        self.consented = true;
+        return self.save();
     });
-});
+};
 
 // Test candidate password
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
@@ -145,7 +150,7 @@ UserSchema.methods.sendRecording = function(url) {
 UserSchema.methods.requiresCall = function (date) {
     var self = this;
     try {
-        if (!self.called && self.verified) {
+        if (!self.called && self.verified && self.consented) {
             console.log('Do I require a call?');
             var schedule = moment(self.time).tz(self.timeZone).utc();
             var now = moment(date).utc();
@@ -211,4 +216,7 @@ UserSchema.statics.makeCalls = function(callback) {
 
 // Export user model
 var User = mongoose.model('User', UserSchema);
+User.on('beforeInsert', function(user) {
+    user.findPreConsent();
+});
 module.exports = User;

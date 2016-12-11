@@ -19,13 +19,14 @@ exports.showCreate = function(request, response) {
 exports.create = function(request, response) {
     var params = request.body;
     var isAjaxRequest = request.xhr;
-    console.log(isAjaxRequest);
+    var cleanPhone = params.phone.split('-').join('');
+    console.log(cleanPhone);
     
     // Create a new user based on form parameters
     var user = new User({
         fullName: params.fullName,
         email: params.email,
-        phone: params.phone,
+        phone: cleanPhone,
         countryCode: params.countryCode,
         notification: 0,
         timeZone: params.timeZone, 
@@ -150,7 +151,12 @@ exports.verify = function(request, response) {
 
         // Send confirmation text message
         var time = momentTimeZone(user.time).tz(user.timeZone).format('MMMM Do YYYY [at] h:mm a');
-        var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling +'+ user.countryCode +' '+ user.phone +' on '+time+'. Make sure the recipient of the call is nearby. :)';
+        if (user.consented) {
+            var message = 'Thank you for verifying your phone number! One of Santas helpers will be calling +'+ user.countryCode +' '+ user.phone +' on '+time+'. Make sure the recipient of the call is nearby. :)';
+        } else  {
+            var message = 'Santa Phone will record and save its call with you/your child and any disclosed personal info. It will email you a link to the recording. To delete recording or more info, see our Privacy Policy at https://santaphone.org/privacy. If you consent, Reply "Y".';
+        }
+        
         user.sendMessage(message, function(err) {
             if (err) {
                 request.flash('errors', 'You are signed up, but '

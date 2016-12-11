@@ -113,7 +113,7 @@ body.home .santa-form {
   font-size: 1.375em;
   margin-top: 26px; }
 
-#main small {
+#main small, #main footer {
   color: #565B73;
   font-family: 'Whitney', Helvetica, sans-serif; }
 
@@ -342,7 +342,8 @@ body.home .santa-form {
 
 footer {
   background: #ECF7FB;
-  padding: 50px 0px; }
+  padding: 50px 0px;
+  font-family: 'Whitney', sans-serif; }
   footer .u-center-block {
     margin: 20px 0px; }
   footer img {

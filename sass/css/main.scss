@@ -141,7 +141,7 @@ body.home {
         font-size:1.375em;
         margin-top:26px;
     }
-    small {
+    small, footer {
         color:$blue;
         font-family:'Whitney', Helvetica, sans-serif;
     }
@@ -398,6 +398,7 @@ body.home {
 footer {
     background: $skyBlue;
     padding: 50px 0px;
+    font-family:'Whitney', sans-serif;
     .u-center-block {
         margin:20px 0px;
     }

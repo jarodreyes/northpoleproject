@@ -9,8 +9,14 @@ var getTimeZones = function(){
 exports.show = function(request, response) {
     response.render('index', {
       timeZones: getTimeZones(),
-      id: 'test',
-      title: 'home'
+      id: 'test'
+    });
+};
+
+// Render home page
+exports.privacy = function(request, response) {
+    response.render('privacy', {
+      title: 'Santa Phone - Privacy Statement'
     });
 };
 

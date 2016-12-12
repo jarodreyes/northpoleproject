@@ -69,13 +69,14 @@ var blinkBeacon = function(el) {
 //   return $('#verify-form').removeClass('hide');
 // }
 
-var showErrors = function(e) {
-  console.log("Error: " + e);
-  $('.messages').addClass('error').text(e);
-  return;
-  // return $('.register-error').fadeIn(300).text(e);
-}
+// var showElf = function(data) {
+//   console.log(data);
+// }
 
-var showElf = function(data) {
-  console.log(data);
-}
+// var showErrors = function(e) {
+//   console.log("Error: " + e);
+//   $('.messages').addClass('error').text(e);
+//   return;
+//   // return $('.register-error').fadeIn(300).text(e);
+// }
+

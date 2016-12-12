@@ -98,14 +98,14 @@ body.home .santa-form {
 
 #main .toys img {
   position: absolute;
-  width: 200px;
+  width: 140px;
   top: 20px; }
 
 #main .toys img.left {
-  left: 0px; }
+  left: 30px; }
 
 #main .toys img.right {
-  right: 0px; }
+  right: 30px; }
 
 #main .hero {
   color: #dedede;

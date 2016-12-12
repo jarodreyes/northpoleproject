@@ -81,11 +81,11 @@ router.get('/delete', function (req, res) {
   var recordingSid = req.query.sid;
   twilioClient.recordings(recordingSid).delete(function(err, data) {
     if (err) {
-        console.log(err.status);
-        throw err.message;
+      console.log(err.status);
+      throw err.message;
     } else {
-        console.log("Sid "+recordingSid+" deleted successfully.");
-        return res.status(201).send('Recording deleted successfully.');
+      console.log("Sid "+recordingSid+" deleted successfully.");
+      return res.status(201).send('Recording deleted successfully.');
     }
   });
 });

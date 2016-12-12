@@ -9,6 +9,7 @@ var express = require('express')
 router.post('/events', twilio.webhook({validate: false}), function (req, res) {
   var userId = req.query.userId;
   var url = req.body.RecordingUrl;
+  var sid = req.body.RecordingSid;
 
   console.log("Events status is: "+req.body.CallStatus);
 
@@ -21,7 +22,7 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
           user.recordings.push({
             url: url,
           });
-          user.sendRecording(url);
+          user.sendRecording(url, sid);
           return user.save();
         }
       })

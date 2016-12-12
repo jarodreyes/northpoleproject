@@ -279,6 +279,9 @@ body.home {
     max-width:850px;
     min-width:350px;
     margin-bottom:100px;
+    .hero {
+        color:$blue !important;
+    }
     .button-block {
         min-height:120px;
     }

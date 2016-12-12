@@ -1,7 +1,8 @@
-var express = require('express')
-  , router = express.Router()
-  , twilio = require('twilio')
-  , User = require('../models/User');
+var config = require('../config');
+var express = require('express');
+var router = express.Router();
+var User = require('../models/User');
+var twilioClient = require('twilio')(config.accountSid, config.authToken);
 var momentTimeZone = require('moment-timezone');
 var moment = require('moment');
 
@@ -9,6 +10,7 @@ var moment = require('moment');
 router.post('/', function (req, res) {
   var userId = req.query.userId;
   var url = req.body.RecordingUrl;
+  var sid = req.body.RecordingSid;
   
   if (userId) {
     User.findOne({ _id: userId })
@@ -17,7 +19,7 @@ router.post('/', function (req, res) {
         user.recordings.push({
           url: url,
         });
-        user.sendRecording(url);
+        user.sendRecording(url, sid);
         if (!user.called) user.called = true;
         return user.save();
       }
@@ -74,5 +76,20 @@ router.post('/incoming', function (req, res) {
     res.status(201).send('Recording ended, nothing created.');
   }
 });
+
+router.get('/delete', function (req, res) {
+  var recordingSid = req.query.sid;
+  twilioClient.recordings(recordingSid).delete(function(err, data) {
+    if (err) {
+        console.log(err.status);
+        throw err.message;
+    } else {
+        console.log("Sid "+recordingSid+" deleted successfully.");
+        return res.status(201).send('Recording deleted successfully.');
+    }
+  });
+});
+
+
 
 module.exports = router;

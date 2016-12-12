@@ -141,9 +141,9 @@ UserSchema.methods.sendMessage = function(message, cb) {
 };
 
 // Send a text message via twilio to this user
-UserSchema.methods.sendRecording = function(url) {
+UserSchema.methods.sendRecording = function(url, recordingSid) {
     console.log("Sending recording url: "+url);
-    Emailer.sendEmail(this, url);
+    Emailer.sendEmail(this, url, recordingSid);
 };
 
 // Check if User needs a phonecall

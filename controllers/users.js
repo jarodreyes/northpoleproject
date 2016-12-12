@@ -139,6 +139,7 @@ exports.verify = function(request, response) {
 
         // If the token was valid, flip the bit to validate the user account
         user.verified = true;
+        user.consented = true;
         user.save(postSave);
     }
 

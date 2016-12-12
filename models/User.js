@@ -76,7 +76,7 @@ UserSchema.methods.findPreConsent = function() {
                 previousConsent = true;
             }
         }
-        self.consented = true;
+        self.consented = previousConsent;
         return self.save();
     });
 };

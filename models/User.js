@@ -156,6 +156,15 @@ UserSchema.methods.requiresCall = function (date) {
             var now = moment(date).utc();
             var diff = moment.duration(schedule.diff(now)).asMinutes();
             var timing = Math.round(diff);
+            if (timing === 10) {
+                var message = "In 10 minutes one of Santa's helpers will be calling this number. Be sure to save this number, and make sure a little one is nearby to talk with the North Pole! Merry Christmas from Twilio and Toys for Tots."
+                self.sendMessage(message, function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log("Early warning message sent!")
+                });
+            }
             return timing <= self.notification;
         } else {
             return false;

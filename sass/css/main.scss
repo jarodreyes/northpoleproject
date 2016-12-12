@@ -122,6 +122,20 @@ body.home {
             width:190px;
         }
     }
+    .toys {
+        
+        img {
+            position: absolute;
+            width: 140px;
+            top: 20px;
+        }
+        img.left {
+            left:30px;
+        }
+        img.right {
+            right:30px;
+        }
+    }
     .hero {
         color:$offWhite;
         text-align:center;

@@ -96,6 +96,17 @@ body.home .santa-form {
   #main .logo img {
     width: 190px; }
 
+#main .toys img {
+  position: absolute;
+  width: 200px;
+  top: 20px; }
+
+#main .toys img.left {
+  left: 0px; }
+
+#main .toys img.right {
+  right: 0px; }
+
 #main .hero {
   color: #dedede;
   text-align: center; }
@@ -240,6 +251,8 @@ body.home .santa-form {
   max-width: 850px;
   min-width: 350px;
   margin-bottom: 100px; }
+  .santa-form .hero {
+    color: #565B73 !important; }
   .santa-form .button-block {
     min-height: 120px; }
   .santa-form form {

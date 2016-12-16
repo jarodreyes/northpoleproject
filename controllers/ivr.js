@@ -38,7 +38,7 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
       res.status(201).send('Recording ended, nothing created.');
     } 
   // If the call was answered let's mark this user as being called.
-  } else if (req.body.CallStatus === 'in-progress') {
+  } else {
     console.log('Checked user. Call completed. Status: '+req.body.CallStatus);
     if (userId) {
       User.findOne({ _id: userId })
@@ -51,8 +51,6 @@ router.post('/events', twilio.webhook({validate: false}), function (req, res) {
         res.status(500).send('Could not save user');
       });
     }
-  } else {
-    console.log("Call Status: "+req.body.CallStatus);
   }
 });
 

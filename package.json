@@ -42,8 +42,9 @@
     "mongoose-lifecycle": "^1.0.0",
     "morgan": "^1.5.1",
     "node-sass-middleware": "^0.10.0",
+    "phone": "^1.0.9",
     "sendgrid": "^4.7.1",
-    "twilio": "^1.11.1"
+    "twilio": "^2"
   },
   "devDependencies": {
     "chai": "^2.1.0",

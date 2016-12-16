@@ -6,7 +6,6 @@ $(document).ready(function() {
     }, 50);
     var localTime = moment.tz.guess();
     var now = moment().add(2, 'minutes');
-    $(".phone").mask("999-999-9999");
     $("#inputDate").datetimepicker({
       sideBySide: true,
       defaultDate: now,

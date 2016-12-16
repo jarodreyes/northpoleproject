@@ -44,10 +44,9 @@ router.post('/incoming', function (req, res) {
   var consent = input.indexOf('y') > -1 ? true : false;
   
   if (userPhone && consent) {
-    var stripPhone = userPhone.substr(userPhone.length - 10);
-    console.log(stripPhone, input, consent);
-    User.findOne({ phone: stripPhone })
+    User.findOne({ phoneNumber: userPhone })
     .then(function (user) {
+      console.log(userPhone, user.phoneNumber);
       var time = momentTimeZone(user.time).tz(user.timeZone).format('MMMM Do YYYY [at] h:mm a');
       var message = 'How Exciting! One of Santas helpers will be calling +'+ user.countryCode +' '+ user.phone +' on '+time+'. Make sure the recipient of the call is nearby. :)';
       if (!user.consented) {

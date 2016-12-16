@@ -1,6 +1,8 @@
 var User = require('../models/User');
 var momentTimeZone = require('moment-timezone');
 var moment = require('moment');
+var PNF = require('google-libphonenumber').PhoneNumberFormat;
+var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
 var getTimeZones = function(){
   return momentTimeZone.tz.names();
@@ -19,15 +21,16 @@ exports.showCreate = function(request, response) {
 exports.create = function(request, response) {
     var params = request.body;
     var isAjaxRequest = request.xhr;
-    var cleanPhone = params.phone.split('-').join('');
-    console.log(cleanPhone);
+    var phoneNumber = phoneUtil.parse('+'+params.countryCode+' '+params.phone+'');
+    var cleanPhone = phoneUtil.format(phoneNumber, PNF.E164);
     
     // Create a new user based on form parameters
     var user = new User({
         fullName: params.fullName,
         email: params.email,
-        phone: cleanPhone,
+        phone: params.phone,
         countryCode: params.countryCode,
+        phoneNumber: cleanPhone,
         notification: 0,
         timeZone: params.timeZone, 
         time:momentTimeZone.tz(params.time, "MM-DD-YYYY hh:mma", params.timeZone)

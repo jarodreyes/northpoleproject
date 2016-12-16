@@ -39,6 +39,10 @@ var UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
     called: {
         type: Boolean,
         default: false
@@ -67,7 +71,7 @@ UserSchema.methods.findPreConsent = function() {
     console.log('finding Pre Consent');
 
     User
-    .find({phone: self.phone})
+    .find({phoneNumber: self.phoneNumber})
     .then(function (users) {
         for (var i = 0; i < users.length; i++) {
             var user = users[i];

@@ -124,6 +124,13 @@ UserSchema.methods.sendMessage = function(message, cb) {
 UserSchema.methods.sendRecording = function(url, recordingSid) {
     console.log("Sending recording url: "+url);
     Emailer.sendEmail(this, url, recordingSid);
+    var message = "Merry Christmas from Santa & all of us elves! We will make to sure to pass your wishes to Santa. In the meantime, here is a recording of the call to keep forever :) -> "+ url +".mp3?Download=true";
+    self.sendMessage(message, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log("Santa Recording sent.")
+    });
 };
 
 // Check if User needs a phonecall

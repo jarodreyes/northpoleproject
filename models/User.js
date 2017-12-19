@@ -122,6 +122,7 @@ UserSchema.methods.sendMessage = function(message, cb) {
 
 // Send a text message via twilio to this user
 UserSchema.methods.sendRecording = function(url, recordingSid) {
+    var self = this;
     console.log("Sending recording url: "+url);
     Emailer.sendEmail(this, url, recordingSid);
     var message = "Merry Christmas from Santa & all of us elves! We will make to sure to pass your wishes to Santa. In the meantime, here is a recording of the call to keep forever :) -> "+ url +".mp3?Download=true";
